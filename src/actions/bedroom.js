@@ -1,4 +1,5 @@
 import * as types from './action-types';
+import { onKettleFill, onKettleHeat } from './kitchen';
 
 export const onLightOn = () => {
   return {
@@ -14,8 +15,13 @@ export const onLightOff = () => {
 
 
 export const onLightDim = () => {
-  return {
-    type: types.LIGHT_DIM
+  return (dispatch, getState) => {
+
+    if (getState().bedroom.light === 'OFF') {
+      dispatch(onKettleFill());
+      dispatch(onKettleHeat());
+    }
+    dispatch({ type: types.LIGHT_DIM });
   };
 }
 
