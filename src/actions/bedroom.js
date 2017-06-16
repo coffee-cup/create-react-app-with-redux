@@ -14,14 +14,11 @@ export const onLightOff = () => {
 }
 
 
-export const onLightDim = () => {
-  return (dispatch, getState) => {
-
+export const onLightDim = () =>
+  (dispatch, getState) => {
     if (getState().bedroom.light === 'OFF' && !getState().kitchen.isKettleFilled) {
       dispatch(onKettleFill());
       dispatch(onKettleHeat());
     }
     dispatch({ type: types.LIGHT_DIM });
   };
-}
-
