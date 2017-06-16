@@ -17,7 +17,7 @@ export const onLightOff = () => {
 export const onLightDim = () => {
   return (dispatch, getState) => {
 
-    if (getState().bedroom.light === 'OFF') {
+    if (getState().bedroom.light === 'OFF' && !getState().kitchen.isKettleFilled) {
       dispatch(onKettleFill());
       dispatch(onKettleHeat());
     }
